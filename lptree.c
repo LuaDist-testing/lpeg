@@ -1,5 +1,5 @@
 /*
-** $Id: lptree.c,v 1.6 2013/03/25 17:21:58 roberto Exp $
+** $Id: lptree.c,v 1.7 2013/03/28 18:27:52 roberto Exp $
 ** Copyright 2013, Lua.org & PUC-Rio  (see 'lpeg.html' for license)
 */
 
@@ -914,11 +914,13 @@ static int checkloops (TTree *tree) {
 
 
 static int verifyerror (lua_State *L, int *passed, int npassed) {
-  int i;
-  for (i = npassed - 2; i >= 0; i--) {  /* search for a repetition */
-    if (passed[i] == passed[npassed - 1]) {
-      lua_rawgeti(L, -1, passed[i]);  /* get rule's key */
-      return luaL_error(L, "rule '%s' may be left recursive", val2str(L, -1));
+  int i, j;
+  for (i = npassed - 1; i >= 0; i--) {  /* search for a repetition */
+    for (j = i - 1; j >= 0; j--) {
+      if (passed[i] == passed[j]) {
+        lua_rawgeti(L, -1, passed[i]);  /* get rule's key */
+        return luaL_error(L, "rule '%s' may be left recursive", val2str(L, -1));
+      }
     }
   }
   return luaL_error(L, "too many left calls in grammar");

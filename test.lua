@@ -1,6 +1,6 @@
 #!/usr/bin/env lua5.1
 
--- $Id: test.lua,v 1.97 2013/03/27 15:50:30 roberto Exp $
+-- $Id: test.lua,v 1.98 2013/03/28 18:29:23 roberto Exp $
 
 -- require"strict"    -- just to be pedantic
 
@@ -350,6 +350,18 @@ checkerr("undefined in given grammar", m.match, { m.V{} }, "")
 
 checkerr("rule 'A' is not a pattern", m.P, { m.P(1), A = {} })
 checkerr("grammar has no initial rule", m.P, { [print] = {} })
+
+-- grammar with a long call chain before left recursion
+p = {'a',
+  a = m.V'b' * m.V'c' * m.V'd' * m.V'a',
+  b = m.V'c',
+  c = m.V'd',
+  d = m.V'e',
+  e = m.V'f',
+  f = m.V'g',
+  g = m.P''
+}
+checkerr("rule 'a' may be left recursive", m.match, p, "a")
 
 
 -- tests for non-pattern as arguments to pattern functions
