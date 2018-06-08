@@ -1,10 +1,10 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "lpeg"
-version = "0.7-1"
+version = "0.7-2"
 -- LuaDist source
 source = {
-  tag = "0.7-1",
+  tag = "0.7-2",
   url = "git://github.com/LuaDist-testing/lpeg.git"
 }
 -- Original source
@@ -29,9 +29,13 @@ dependencies = {
    "lua >= 5.1"
 }
 build = {
-   type = "module",
-   modules = {
-      lpeg = "lpeg.c",
-      re = "re.lua"
+   type = "make",
+   install_pass = false,
+   build_variables = {
+      CFLAGS = "$(CFLAGS) $(LIBFLAG) -I$(LUA_INCDIR) -o lpeg.so",
+   },
+   install = {
+      lua = { "re.lua" },
+      lib = { "lpeg.so" }
    }
 }
