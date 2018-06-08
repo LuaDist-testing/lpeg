@@ -1,10 +1,10 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "lpeg"
-version = "0.10-1"
+version = "0.10-2"
 -- LuaDist source
 source = {
-  tag = "0.10-1",
+  tag = "0.10-2",
   url = "git://github.com/LuaDist-testing/lpeg.git"
 }
 -- Original source
