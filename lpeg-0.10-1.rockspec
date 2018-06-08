@@ -1,16 +1,16 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "lpeg"
-version = "0.9-1"
+version = "0.10-1"
 -- LuaDist source
 source = {
-  tag = "0.9-1",
+  tag = "0.10-1",
   url = "git://github.com/LuaDist-testing/lpeg.git"
 }
 -- Original source
 -- source = {
---    url = "http://www.inf.puc-rio.br/~roberto/lpeg/lpeg-0.9.tar.gz",
---    md5 = "84a4f5fb4b87b90bb1b7284ec6bb69bc"
+--    url = "http://luarocks.org/downloads/lpeg-0.10.tar.gz",
+--    md5 = "13275fbecc56407cd7de2cbdbaba419f"
 -- }
 description = {
    summary = "Parsing Expression Grammars For Lua",
